@@ -42,10 +42,8 @@ pub fn build(b: *std.Build) void {
     // step when running `zig build`).
     b.installArtifact(exe);
 
-    //const raylib = raySdk.addRaylib(b, target, optimize, .{});
     const raylib = raySdk.addRaylib(b, target, optimize, .{}) catch unreachable;
     exe.addIncludePath(.{ .path = "raylib/src" });
-    // exe.addIncludePath(std.Build.LazyPath{ .path = "raylib/src" });
     exe.linkLibrary(raylib);
     exe.linkLibC();
 
