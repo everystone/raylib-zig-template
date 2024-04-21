@@ -44,13 +44,9 @@ pub fn build(b: *std.Build) void {
 
     //const raylib = raySdk.addRaylib(b, target, optimize, .{});
     const raylib = raySdk.addRaylib(b, target, optimize, .{}) catch unreachable;
-    // exe.addIncludePath(.{ .path = "raylib/src" });
-    exe.addIncludePath(std.Build.LazyPath{ .path = "raylib/src" });
+    exe.addIncludePath(.{ .path = "raylib/src" });
+    // exe.addIncludePath(std.Build.LazyPath{ .path = "raylib/src" });
     exe.linkLibrary(raylib);
-
-    // exe.addIncludePath(.{ .path = "raylib/src" });
-    // exe.linkLibrary(raylib);
-
     exe.linkLibC();
 
     // This *creates* a Run step in the build graph, to be executed when another
